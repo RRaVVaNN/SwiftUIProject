@@ -32,5 +32,6 @@ struct UserInfoView: View {
         }
         .padding()
         .navigationTitle("User Info")
+        .toolbar(.hidden, for: .tabBar)
     }
 }

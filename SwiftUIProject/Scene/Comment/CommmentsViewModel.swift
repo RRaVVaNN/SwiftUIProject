@@ -15,11 +15,7 @@ final class CommmentsViewModel: ObservableObject {
     
     func fetchComments(postId: Int) async {
         do {
-            let results = try await NetworkManager.shared.request(
-                stringUrl: "https://jsonplaceholder.typicode.com/comments?postId=\(postId)",
-                model: [Comment].self
-            )
-            comments = results
+            comments = try await CommentsNetworkManager.shared.getComments(postId: postId)
         } catch {
             errorMessage = error.localizedDescription
         }

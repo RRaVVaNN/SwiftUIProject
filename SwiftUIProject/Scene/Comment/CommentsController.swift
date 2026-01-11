@@ -12,16 +12,12 @@ struct CommentsController: View {
     @StateObject private var viewModel = CommmentsViewModel()
     
     var body: some View {
-            List(viewModel.comments) { comment in
-                CommentRowView(comment: comment)
-            }.navigationTitle("Comments")
-                .task {
-                    await viewModel.fetchComments(postId: postId)
-                }
+        List(viewModel.comments) { comment in
+            CommentRowView(comment: comment)
+        }.navigationTitle("Comments")
+            .task {
+                await viewModel.fetchComments(postId: postId)
+            }
+            .toolbar(.hidden, for: .tabBar)
     }
 }
-/*
- #Preview {
- CommentsController(postId: self.postId)
- }
- */

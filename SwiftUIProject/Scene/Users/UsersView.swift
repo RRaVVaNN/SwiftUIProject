@@ -12,25 +12,21 @@ struct UsersView: View {
     @AppStorage("isLoggedIn") private var isLoggedIn = false
     
     @StateObject private var viewModel = UsersViewModel()
-
+    
     var body : some View {
         
-        VStack(spacing: 0) {
-            NavigationStack {
-                List(viewModel.users) { user in
-                    NavigationLink {
-                        UserInfoView(user: user)
-                    } label: {
-                        UserRowView(user: user)
-                    }
-                }
-                .navigationTitle("Users")
-                .listStyle(.plain)
-                .onAppear {
-                    viewModel.fetchUsers()
+        NavigationStack {
+            List(viewModel.users) { user in
+                NavigationLink {
+                    UserInfoView(user: user)
+                } label: {
+                    UserRowView(user: user)
                 }
             }
-            
+            .navigationTitle("Users")
+            .onAppear {
+                viewModel.fetchUsers()
+            }
             Spacer()
             
             Button(action: {
@@ -48,6 +44,5 @@ struct UsersView: View {
             .padding(.bottom , 20)
         }
     }
-    
 }
 

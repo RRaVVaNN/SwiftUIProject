@@ -16,11 +16,7 @@ final class PostViewModel: ObservableObject {
     
     func fetchPosts() async {
         do {
-            let result = try await NetworkManager.shared.request(
-                stringUrl: "https://jsonplaceholder.typicode.com/posts",
-                model: [Post].self
-            )
-            posts = result
+            posts = try await PostsNetworkManager.shared.getPosts()
         } catch {
             errorMessage = error.localizedDescription
         }
