@@ -36,6 +36,7 @@ struct RegisterView: View {
             
             Button(action: {
                 print("Register tapped")
+                
             }) {
                 Text("Register")
                     .frame(maxWidth: .infinity)
