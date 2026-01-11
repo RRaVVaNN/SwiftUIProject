@@ -9,10 +9,23 @@
 import SwiftUI
 
 struct PostController: View {
+    
+    @StateObject private var viewModel = PostViewModel()
+    
     var body: some View {
-        NavigationView {
-            Text("Posts Screen")
-                .navigationTitle("Posts")
+        NavigationStack {
+            List(viewModel.posts) { post in
+                NavigationLink {
+                    CommentsController(postId: post.id ?? 0)
+                }
+                label: { Text(post.title ?? "")
+                }
+            }.task {
+                await viewModel.fetchPosts()
+            }.navigationTitle("Posts")
         }
     }
+}
+#Preview{
+    PostController()
 }
