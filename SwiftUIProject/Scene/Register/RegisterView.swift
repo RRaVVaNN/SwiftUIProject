@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RegisterView: View {
     
+    @Binding var isLoggedIn: Bool
+    
     @State private var email = ""
     @State private var password = ""
     
@@ -35,8 +37,7 @@ struct RegisterView: View {
             Spacer()
             
             Button(action: {
-                print("Register tapped")
-                
+                isLoggedIn = true
             }) {
                 Text("Register")
                     .frame(maxWidth: .infinity)
@@ -52,5 +53,5 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView()
+    RegisterView(isLoggedIn: .constant(false))
 }
