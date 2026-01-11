@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct SwiftUIProjectApp: App {
+    @AppStorage("isLoggedIn") private var isLoggedIn = false
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            if isLoggedIn {
+                MainTabView()
+            }else {
+                RegisterView(isLoggedIn: $isLoggedIn)
+            }
         }
     }
 }

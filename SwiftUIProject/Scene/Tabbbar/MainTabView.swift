@@ -17,6 +17,12 @@ struct MainTabView: View {
                     Image(systemName: "doc.text")
                     Text("Posts")
                 }
+            
+            UsersView()
+                .tabItem {
+                    Image(systemName: "person.circle")
+                    Text("Users")
+                }
         }
     }
 }
